@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:44:25 by jponcele          #+#    #+#              #
-#    Updated: 2013/12/27 12:40:59 by jponcele         ###   ########.fr        #
+#    Updated: 2016/03/30 19:08:49 by alaulom          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC = ft_putendl.c\
 	  ft_putchar.c\
 	  ft_putstr.c\
 	  ft_strlen.c\
+	  ft_isdigit.c\
 	  ft_dlstprint.c\
 	  ft_dlstrprint.c\
 	  ft_dlstnew.c\
