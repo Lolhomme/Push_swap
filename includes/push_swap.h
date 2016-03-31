@@ -3,73 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaulom <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aalliot <aalliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/28 16:52:34 by alaulom           #+#    #+#             */
-/*   Updated: 2016/03/29 13:50:51 by alaulom          ###   ########.fr       */
+/*   Created: 2015/03/19 12:02:53 by aalliot           #+#    #+#             */
+/*   Updated: 2016/03/31 16:47:52 by alaulom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <libft.h>
+# include "libft.h"
+# include <limits.h>
+# include <stdlib.h>
 
-typedef struct		s_ps
+typedef struct	s_opt
 {
-	t_dlst			**a_adlst;
-	t_dlst			**a_zdlst;
-	int				a_size;
-	t_dlst			**b_adlst;
-	t_dlst			**b_zdlst;
-}					t_ps;
+	int			nb;
+	char		err;
+	char		*optstr;
+}				t_opt;
 
-/*
-**	struct.c
-*/
+typedef struct	s_stacks
+{
+	t_list		*sa;
+	int			nb_sa;
+	t_list		*sb;
+	int			nb_sb;
+	int			nb_act;
+	int			options;
+}				t_stacks;
 
-t_ps				*init_ps(t_ps *ps);
-void				free_ps(t_ps *ps);
+void			do_sa(t_stacks *stacks);
+void			do_sb(t_stacks *stacks);
+void			do_pa(t_stacks *stacks);
+void			do_pb(t_stacks *stacks);
+void			do_ra(t_stacks *stacks);
+void			do_rb(t_stacks *stacks);
+void			do_rra(t_stacks *stacks);
+void			do_rrb(t_stacks *stacks);
+void			do_ss(t_stacks *stacks);
+void			do_rr(t_stacks *stacks);
+void			do_rrr(t_stacks *stacks);
+void			do_all(t_stacks *stacks);
 
-/*
-**	fill_start.c
-*/
+void			trie(t_stacks *stacks);
+int				sa_min(t_stacks *stacks, int *ret);
+int				is_sort(t_stacks *stacks);
+int				is_presk_sort(t_stacks *stacks);
+int				*lst2tab(t_list **lst, int *size);
 
-void				fill_start(t_ps *ps, int ac, char **av);
+void			print_stacks(t_stacks *st);
+void			print_move(t_stacks *st, char *str, char *color);
+void			print_acts_nb(int i, t_stacks all);
+void			illegal_option(t_opt *opt);
 
-/*
-**	ps_swap.c
-*/
+void			check_dups(t_stacks st);
+int				ft_atoi_err(const char *str, int *err);
+int				error_handling(char **argv);
 
-void				ps_swap(t_ps *ps, char *flag, char add);
-
-/*
-**	ps_pass.c
-*/
-
-void				ps_passa(t_ps *ps);
-void				ps_passb(t_ps *ps);
-
-/*
-**	ps_rot.c
-*/
-
-void				ps_rota(t_ps *ps, char add);
-void				ps_rotb(t_ps *ps, char add);
-void				ps_rotr(t_ps *ps);
-
-/*
-**	ps_rotr.c
-*/
-
-void				ps_rotra(t_ps *ps, char add);
-void				ps_rotrb(t_ps *ps, char add);
-void				ps_rotrr(t_ps *ps);
-
-/*
-**	ps_tri.c
-*/
-
-void				ps_tri(t_ps *ps);
+int				ft_get_opt(int argc, char *av[], t_opt *opt);
 
 #endif

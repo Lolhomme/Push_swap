@@ -3,50 +3,62 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alaulom <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: aalliot <aalliot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/03/28 16:51:28 by alaulom           #+#    #+#              #
-#    Updated: 2016/03/30 18:36:14 by alaulom          ###   ########.fr        #
+#    Created: 2014/11/06 10:11:24 by aalliot           #+#    #+#              #
+#    Updated: 2016/03/31 16:46:49 by alaulom          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+STATIC_EXE	= push_swap
 
-SRC = main.c\
-	  struct.c\
-	  fill_start.c\
-	  ps_swap.c\
-	  ps_pass.c\
-	  ps_rot.c\
-	  ps_rotr.c\
-	  ps_tri.c
+SRC		=	main.c				\
+			do_s.c				\
+			do_p.c				\
+			do_r.c				\
+			do_rr.c				\
+			do_all.c			\
+			trie1.c				\
+			print_stack.c		\
+			get_opt.c			\
+			print.c				\
+			error_handling.c	\
+			is_sort.c
 
-OBJ = $(SRC:.c=.o)
+STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
 
-BUILTIN = ft_cd\
+HEAD_DIR	= includes
+SRC_DIR		= src
+STATIC_DIR	= static
+LIBFT_STATIC= libft/libft.a
+LIBFT_HEAD	= libft/includes/
 
-LIB_PATH = ./libft/
-LIB_NAME = libft.a
+CC			= gcc
+FLAGS		= -Wall -Wextra -Werror
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+all: $(STATIC_EXE)
 
-RM = rm
-RFLAGS = -rf
+$(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
+	$(CC) -O3 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(FLAGS)
 
-includesdir = ./includes
-lib_includesdir = ./libft/includes/
+$(STATIC_DIR)/%.o: $(SRC_DIR)/%.c $(LIBFT)
+	$(CC) -O3 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(FLAGS)
 
-all: $(NAME)
+$(LIBFT_STATIC):
+	@make -C libft/ libft.a
 
-$(NAME): $(OBJ)
-	@$(MAKE) -C $(LIB_PATH)
-	@printf 'Compiling ./%s binaries : [\033[32mDONE\033[0m]\n' '$(NAME)'
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB_PATH)$(LIB_NAME) -g
-	@printf 'Compiling ./%s : [\033[32mDONE\033[0m]\n' '$(NAME)'
+.PHONY: clean fclean re debug norme normeLibft test
 
-%.o: ./src/%.c
-	@$(CC) $(CFLAGS) -c $^ -I $(includesdir) -I $(lib_includesdir)
+clean:
+	@make -C libft clean
+	@rm -f $(STATIC_OBJ)
+
+fclean: clean
+	@make -C libft fclean
+	@rm -f $(STATIC_EXE)
+
+normeLibft:
+		@make -C libft norme
 
 test:
 	@echo "\nGestion d'erreur"
@@ -89,16 +101,5 @@ test:
 	@echo "\n"
 	./push_swap -ca 3 2 1
 
-clean:
-	@$(RM) $(RFLAGS) $(OBJ)
-	@printf 'Clean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
-	@$(MAKE) clean -C $(LIB_PATH)
-
-fclean: clean
-	@$(RM) $(RFLAGS) $(NAME)
-	@printf 'Fclean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
-	@$(MAKE) fclean -C $(LIB_PATH)
-
-re : fclean all
-
-.PHONY: all clean fclean re
+re: fclean
+	make

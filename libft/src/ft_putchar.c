@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalliot <aalliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 17:28:20 by jponcele          #+#    #+#             */
-/*   Updated: 2013/12/22 13:46:09 by jponcele         ###   ########.fr       */
+/*   Created: 2014/11/07 17:02:06 by aalliot           #+#    #+#             */
+/*   Updated: 2016/03/31 16:54:23 by alaulom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <unistd.h>
 
 void		ft_putchar(char c)
 {

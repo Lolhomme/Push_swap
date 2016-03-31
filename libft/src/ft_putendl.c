@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalliot <aalliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/24 17:33:37 by jponcele          #+#    #+#             */
-/*   Updated: 2013/12/01 11:57:40 by jponcele         ###   ########.fr       */
+/*   Created: 2014/11/07 17:06:04 by aalliot           #+#    #+#             */
+/*   Updated: 2014/11/07 17:19:40 by aalliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <unistd.h>
+#include "libft.h"
 
-void			ft_putendl(const char *str)
+void			ft_putendl(const char *s)
 {
-	if (str)
-	{
-		ft_putstr(str);
-		ft_putchar('\n');
-	}
+	while (*s)
+		write(1, s++, 1);
+	ft_putchar('\n');
 }

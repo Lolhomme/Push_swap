@@ -3,33 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalliot <aalliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/22 13:36:52 by jponcele          #+#    #+#             */
-/*   Updated: 2013/12/01 12:28:47 by jponcele         ###   ########.fr       */
+/*   Created: 2014/11/06 17:40:17 by aalliot           #+#    #+#             */
+/*   Updated: 2014/11/07 14:00:49 by aalliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-
-int				ft_strequ(const char *str1, const char *str2)
+int			ft_strequ(const char *s1, const char *s2)
 {
-	size_t		index;
-
-	index = 0;
-	if (str1 == NULL || str2 == NULL)
+	if (s1 && s2)
 	{
-		if (str1 == str2)
-			return (1);
-		return (0);
-	}
-	while (str1[index] != '\0' && str2[index] != '\0')
-	{
-		if (str1[index] != str2[index])
+		while (*s1 && *s2)
+			if (*s1++ != *s2++)
+				return (0);
+		if (*s1 != *s2)
 			return (0);
-		index++;
+		return (1);
 	}
-	if (str1[index] != str2[index])
-		return (0);
-	return (1);
+	return (0);
 }

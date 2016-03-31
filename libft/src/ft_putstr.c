@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalliot <aalliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 17:32:59 by jponcele          #+#    #+#             */
-/*   Updated: 2013/12/23 18:03:47 by jponcele         ###   ########.fr       */
+/*   Created: 2014/11/07 17:03:30 by aalliot           #+#    #+#             */
+/*   Updated: 2016/03/31 16:54:39 by alaulom          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <unistd.h>
 
-void		ft_putstr(const char *str)
+void		ft_putstr(const char *s)
 {
-	if (str)
-		write(1, str, ft_strlen(str));
-	else
-		write(1, "(null)", 6);
+	while (*s)
+		write(1, s++, 1);
 }

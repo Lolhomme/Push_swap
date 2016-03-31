@@ -3,54 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalliot <aalliot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/24 17:34:25 by jponcele          #+#    #+#             */
-/*   Updated: 2013/12/19 09:53:15 by jponcele         ###   ########.fr       */
+/*   Created: 2014/11/07 17:27:33 by aalliot           #+#    #+#             */
+/*   Updated: 2014/11/11 16:46:50 by aalliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-void			ft_putnbr(int nbr)
+void			ft_putnbr(int n)
 {
-	if (nbr < 0)
+	if (n == -2147483648)
+		return (ft_putstr("-2147483648"));
+	if (n < 0)
 	{
 		ft_putchar('-');
-		nbr = nbr * -1;
-	}
-	if (nbr > 9)
-	{
-		ft_putnbr(nbr / 10);
-		ft_putnbr(nbr % 10);
+		ft_putnbr(-n);
 	}
 	else
-		ft_putchar(nbr + '0');
-}
-
-void			ft_putlong(long nbr)
-{
-	if (nbr < 0)
 	{
-		ft_putchar('-');
-		nbr = nbr * -1;
+		if (n < 10)
+			ft_putchar(n + '0');
+		else
+		{
+			ft_putnbr(n / 10);
+			ft_putchar((n % 10) + '0');
+		}
 	}
-	if (nbr > 9)
-	{
-		ft_putlong(nbr / 10);
-		ft_putlong(nbr % 10);
-	}
-	else
-		ft_putchar(nbr + '0');
-}
-
-void			ft_putuint(unsigned int nbr)
-{
-	if (nbr > 9)
-	{
-		ft_putlong(nbr / 10);
-		ft_putlong(nbr % 10);
-	}
-	else
-		ft_putchar(nbr + '0');
 }
